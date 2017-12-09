@@ -1,7 +1,7 @@
 # CS232
 Project for CS232 (Jay-Arr Buhain and Abraham Magpantay)
 
-# Preparation for MongoDB setup
+# A. Preparation for MongoDB setup
 1. Download MongoDB installer at MongoDB Download Center https://www.mongodb.com/download-center#community
 2. Install MongoDB in your machine
 3. When installation is finished, we can now start setting up our database environment
@@ -27,7 +27,7 @@ Local Disk (C:)
     - rs1-1
     - rs1-2
 
-# Setting up Replica Set (rs0)
+# B. Setting up Replica Set (rs0)
 1. Open your cmd then go to the bin folder of the MongoDB. By default, MongoDB bin folder can be located on C:\Program Files\MongoDB\Server\3.4\bin
 
 2. Once you are in the path of the bin folder, issue the command below:
@@ -52,7 +52,7 @@ Local Disk (C:)
           ]
         })
 
-# Setting up Replica Set (rs1)
+# C. Setting up Replica Set (rs1)
 1. Open your cmd then go to the bin folder of the MongoDB. By default, MongoDB bin folder can be located on C:\Program Files\MongoDB\Server\3.4\bin
 
 2. Once you are in the path of the bin folder, issue the command below:
@@ -77,7 +77,7 @@ Local Disk (C:)
           ]
         })
         
-# Setting up Replica Set (configReplSet)
+# D. Setting up Replica Set (configReplSet)
 1. Open your cmd then go to the bin folder of the MongoDB. By default, MongoDB bin folder can be located at on C:\Program Files\MongoDB\Server\3.4\bin
 
 2. Once you are in the path of the bin folder, issue the command below:
@@ -102,7 +102,7 @@ Local Disk (C:)
           ]
         })
 
-# Setting up Mongos and enabling Shard
+# E. Setting up Mongos and enabling Shard
 1.  By this time, we already have running nine MongoDB instances in our machine with this we must have at least nine cmd running. Open another cmd then go to the bin folder of the MongoDB. By default, MongoDB bin folder can be located on C:\Program Files\MongoDB\Server\3.4\bin
 
 2.  To settup the routing service of MongoDB issue the command below. This will allow us to use our configReplSet Replica Set as our Config Server that will hold our two Replica Set Shards rs0 and rs1:
@@ -147,7 +147,7 @@ Local Disk (C:)
     - sh.setBalancerState(true)
     - sh.startBalancer()
     
-# Loading our datasets
+# F. Loading our datasets
 1.  You can download the dataset on global terrorism attack here:  https://www.kaggle.com/START-UMD/gtd
 
 2.  The file is in .csv format, you need to convert it to json using: http://www.csvjson.com/csv2json
@@ -159,7 +159,9 @@ Local Disk (C:)
 
 5.  Wait until the import to finish
 
-# Running MapReduce
-1.  To run our MapReduce functions, go back to your mongos prompt and 
+# G. Running MapReduce
+1.  To run our MapReduce functions, go back to your mongos prompt or login again using the step on E.3
 
-Our MongoDB configured setup can be downloaded here: setup https://drive.google.com/open?id=1JOoO7vAZ724ukuhAtwTIwr_6kXGpOjl8
+2.  Open the MapReduce.js on this git and run the MapReduce functions. Follow the order by which the functions are arranged
+
+3.  You can download our MongoDB configured setup here: setup https://drive.google.com/open?id=1JOoO7vAZ724ukuhAtwTIwr_6kXGpOjl8
