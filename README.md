@@ -1,7 +1,7 @@
 # CS232
 Project for CS232 (Jay-Arr Buhain and Abraham Magpantay)
 
-# PREPARATION FOR MONGODB SETUP
+# PREPARATION FOR MongoDB SETUP
 1. Download MongoDB installer at MongoDB Download Center https://www.mongodb.com/download-center#community
 2. Install MongoDB in your machine
 3. When installation is finished, we can now start setting up our database environment
@@ -103,7 +103,11 @@ Local Disk (C:)
           ]
         })
 
+# SETTING UP Mongos (configReplSet)
+1.  By this time, we already have running nine MongoDB instances in our machine with this we must have at least nine cmd running. Open another cmd then go to the bin folder of the MongoDB. By default, MongoDB bin folder can be located at on C:\Program Files\MongoDB\Server\3.4\bin
 
+2.  To settup the routing service of MongoDB issue the command below. This :
+    - mongos --configdb configReplSet/localhost:27011,localhost:27012,localhost:27013 --port 27019
 
 You can download the data set on global terrorism attack here:  https://www.kaggle.com/START-UMD/gtd
 
