@@ -167,3 +167,6 @@ Local Disk (C:)
 3.  To enable Sharding on the collection produced by the MapReduce Function, issue the command on E.5 at 5.6 
 
 4.  You can download our MongoDB configured setup here: setup https://drive.google.com/open?id=1JOoO7vAZ724ukuhAtwTIwr_6kXGpOjl8
+
+# F. PHP codes
+1. Codes on PHP is available on gta-php.zip mongos should be running on port 27019 before using the system. Note that you must have Xampp installed in your machine and all the mongo driver needed for PHP to communicate to the MongoDB
