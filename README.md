@@ -28,7 +28,7 @@ Local Disk (C:)
     - rs1-2
 
 
-#SETTING UP REPLICA SETS IN MONGODB
+# SETTING UP REPLICA SETS IN MONGODB
 1. Open your cmd then go to the bin folder of the MongoDB. By default, MongoDB bin folder can be located at on C:\Program Files\MongoDB\Server\3.4\bin
 
 2. Once you are in the path of the bin folder, issue the command below:
