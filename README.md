@@ -2,7 +2,7 @@
 Project for CS232 (Jay-Arr Buhain and Abraham Magpantay)
 
 ##################################################################################################
-#                                  PREPARATION FOR MONGODB SETUP                                 #
+# PREPARATION FOR MONGODB SETUP
 ##################################################################################################
 
 1. Download MongoDB installer at MongoDB Download Center https://www.mongodb.com/download-center#community
