@@ -43,7 +43,7 @@ Local Disk (C:)
 5. In this step, you must have three MongoDB instance running in three different ports (37011, 37012 and 37103). Now we need to login to one of the MongoDB instance that we have created, to do this repeat step 1 then issue the command below. In our case we will login to the MongoDB instance at port 37011.
    -  mongo --port 37011
 
-6. Once you are logged in in one of the MongoDB instance, isse the command below this will initiate the three MongoDB instance to be a Replica Sets with an id of rs0.
+6. Once you are logged in in one of the MongoDB instance, isse the command below this will initiate the three MongoDB instance to be a Replica Sets with an id of rs0. This Replica set will be used as a Shard later on.
    -  rs.initiate({
         _id: "rs0",
         members: [
@@ -68,7 +68,7 @@ Local Disk (C:)
 5. In this step, you must have three MongoDB instance running in three different ports (47011, 47012 and 47103). Now we need to login to one of the MongoDB instance that we have created, to do this repeat step 1 then issue the command below. In our case we will login to the MongoDB instance at port 47011.
    -  mongo --port 47011
 
-6. Once you are logged in in one of the MongoDB instance, isse the command below this will initiate the three MongoDB instance to be a Replica Sets with an id of rs0.
+6. Once you are logged in in one of the MongoDB instance, isse the command below this will initiate the three MongoDB instance to be a Replica Sets with an id of rs1. This Replica set will be used as a Shard later on.
    -  rs.initiate({
         _id: "rs1",
         members: [
@@ -77,8 +77,31 @@ Local Disk (C:)
             { _id : 2, host : "localhost:47013" }
           ]
         })
+        
+# SETTING UP REPLICA SETS IN MONGODB (configReplSet)
+1. Open your cmd then go to the bin folder of the MongoDB. By default, MongoDB bin folder can be located at on C:\Program Files\MongoDB\Server\3.4\bin
 
+2. Once you are in the path of the bin folder, issue the command below:
+   -  mongod --configsvr --replSet configReplSet --port 27011 --dbpath F:/mongodb/configReplSet/cfg0
+   
+3. Repeat step 1 then issue the the command below, do not close the current cmd run another cmd instance:
+   -  mongod --configsvr --replSet configReplSet --port 27012 --dbpath F:/mongodb/configReplSet/cfg1
+   
+4. Repeat step 1 then issue the the command below, do not close the current cmd run another cmd instance:
+   -  mongod --configsvr --replSet configReplSet --port 27013 --dbpath F:/mongodb/configReplSet/cfg2
+   
+5. In this step, you must have three MongoDB instance running in three different ports (27011, 27012 and 27013). Now we need to login to one of the MongoDB instance that we have created, to do this repeat step 1 then issue the command below. In our case we will login to the MongoDB instance at port 27011.
+   -  mongo --port 27011
 
+6. Once you are logged in in one of the MongoDB instance, isse the command below this will initiate the three MongoDB instance to be a Replica Sets with an id of configReplSet. This Replica set will be used as a our Config server later on.
+   -  rs.initiate({
+        _id: "configReplSet",
+        configsvr: true,
+            { _id : 0, host : "localhost:27011" },
+            { _id : 1, host : "localhost:27012" },
+            { _id : 2, host : "localhost:27013" }
+          ]
+        })
 
 
 
