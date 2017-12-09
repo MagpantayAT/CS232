@@ -125,19 +125,19 @@ Local Disk (C:)
     
 5.  Now we have two Shard server, rs0 and rs1. We will now create our database and enable sharding on it. To do this run the follwing commands:
 
-    Create a database named gtdb.
+    5.1 Create a database named gtdb.
     - use gtdb
     
-    Create collection under gtdb with name gtdc.
+    5.2 Create collection under gtdb with name gtdc.
     - db.createCollection("gtdc")
     
-    Enable Sharding on gtdb database.
+    5.3 Enable Sharding on gtdb database.
     - sh.enableSharding("gtdb")
     
-    Since our collection is still empty, we need to create index for it that will be used as the basis for Sharding.
+    5.4 Since our collection is still empty, we need to create index for it that will be used as the basis for Sharding.
     - db.gtbc.createIndex( { eventid : 1 } )
     
-    We will enable Sharding on our collection tieh eventid as our Shard Key.
+    5.6 We will enable Sharding on our collection tieh eventid as our Shard Key.
     - sh.shardCollection("gtdb.gtdc", { "eventid" : 1 } )
 
 6.  We now have enabled Sharding on our database and the collection. To ensure balancing to our Shards, you can issue the following commad:
@@ -162,6 +162,8 @@ Local Disk (C:)
 # G. Running MapReduce
 1.  To run our MapReduce functions, go back to your mongos prompt or login again using the step on E.3
 
-2.  Open the MapReduce.js on this git and run the MapReduce functions. Follow the order by which the functions are arranged
+2.  Open the MapReduce.js on this git and run the MapReduce functions. Follow the order by which the functions are arranged.
 
-3.  You can download our MongoDB configured setup here: setup https://drive.google.com/open?id=1JOoO7vAZ724ukuhAtwTIwr_6kXGpOjl8
+3.  To enable Sharding on the collection produced by the MapReduce Function, issue the command on E.5 at 5.6 
+
+4.  You can download our MongoDB configured setup here: setup https://drive.google.com/open?id=1JOoO7vAZ724ukuhAtwTIwr_6kXGpOjl8
