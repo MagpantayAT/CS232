@@ -146,6 +146,8 @@ Local Disk (C:)
     Enable balancer state and start the balancer
     - sh.setBalancerState(true)
     - sh.startBalancer()
+
+7. To visualize our topology you can refer to the topology.jpg on our git to understand our setup better.
     
 # F. Loading our datasets
 1.  You can download the dataset on global terrorism attack here:  https://www.kaggle.com/START-UMD/gtd
