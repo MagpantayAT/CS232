@@ -109,10 +109,12 @@ Local Disk (C:)
     - mongos --configdb configReplSet/localhost:27011,localhost:27012,localhost:27013 --port 27019
 
 3.  Onced issued, you will be in the mongos prompt. Here we will add the rs0 and rs1 as Shard server. Run the command below:
+    
     Adding rs0 and its MongoDB instances as Shards
     - sh.addShard("rs0/localhost:37011")
     - sh.addShard("rs0/localhost:37012")
     - sh.addShard("rs0/localhost:37013")
+    
     Adding rs1 and its MongoDB instances as Shards
     - sh.addShard("rs1/localhost:47011")
     - sh.addShard("rs1/localhost:47012")
