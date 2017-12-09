@@ -28,7 +28,7 @@ Local Disk (C:)
     - rs1-2
 
 # Setting up Replica Set (rs0)
-1. Open your cmd then go to the bin folder of the MongoDB. By default, MongoDB bin folder can be located at on C:\Program Files\MongoDB\Server\3.4\bin
+1. Open your cmd then go to the bin folder of the MongoDB. By default, MongoDB bin folder can be located on C:\Program Files\MongoDB\Server\3.4\bin
 
 2. Once you are in the path of the bin folder, issue the command below:
    -  mongod --port 37011 --dbpath C:/mongodb/rs0/rs0-0 --replSet rs0 --shardsvr
@@ -53,7 +53,7 @@ Local Disk (C:)
         })
 
 # Setting up Replica Set (rs1)
-1. Open your cmd then go to the bin folder of the MongoDB. By default, MongoDB bin folder can be located at on C:\Program Files\MongoDB\Server\3.4\bin
+1. Open your cmd then go to the bin folder of the MongoDB. By default, MongoDB bin folder can be located on C:\Program Files\MongoDB\Server\3.4\bin
 
 2. Once you are in the path of the bin folder, issue the command below:
    -  mongod --port 47011 --dbpath C:/mongodb/rs1/rs1-0 --replSet rs0 --shardsvr
@@ -103,12 +103,15 @@ Local Disk (C:)
         })
 
 # Setting up Mongos and enabling Shard
-1.  By this time, we already have running nine MongoDB instances in our machine with this we must have at least nine cmd running. Open another cmd then go to the bin folder of the MongoDB. By default, MongoDB bin folder can be located at on C:\Program Files\MongoDB\Server\3.4\bin
+1.  By this time, we already have running nine MongoDB instances in our machine with this we must have at least nine cmd running. Open another cmd then go to the bin folder of the MongoDB. By default, MongoDB bin folder can be located on C:\Program Files\MongoDB\Server\3.4\bin
 
 2.  To settup the routing service of MongoDB issue the command below. This will allow us to use our configReplSet Replica Set as our Config Server that will hold our two Replica Set Shards rs0 and rs1:
     - mongos --configdb configReplSet/localhost:27011,localhost:27012,localhost:27013 --port 27019
 
-3.  Onced issued, you will be in the mongos prompt. Here we will add the rs0 and rs1 as Shard server. Run the command below:
+3.  Onced issued, routing service will be running now. With this open another cmd and repeat step 1. We will now login to mongos using the command below:
+    - mongo --port 27019
+
+4.  You will be in the mongos prompt. Here we will add the rs0 and rs1 as Shard server. Run the command below:
     
     Adding rs0 and its MongoDB instances as Shards
     - sh.addShard("rs0/localhost:37011")
@@ -120,7 +123,7 @@ Local Disk (C:)
     - sh.addShard("rs1/localhost:47012")
     - sh.addShard("rs1/localhost:47013")
     
-4.  Now we have two Shard server, rs0 and rs1. We will now create our database and enable sharding on it. To do this run the follwing commands:
+5.  Now we have two Shard server, rs0 and rs1. We will now create our database and enable sharding on it. To do this run the follwing commands:
 
     Create a database named gtdb.
     - use gtdb
@@ -137,12 +140,26 @@ Local Disk (C:)
     We will enable Sharding on our collection tieh eventid as our Shard Key.
     - sh.shardCollection("gtdb.gtdc", { "eventid" : 1 } )
 
-5.  We now have enabled Sharding on our database and the collection. To ensure balancing to our Shards, you can issue the following commad:
+6.  We now have enabled Sharding on our database and the collection. To ensure balancing to our Shards, you can issue the following commad:
     To check balancer is running
     - sh.isBalancerRunning()
     Enable balancer state and start the balancer
     - sh.setBalancerState(true)
     - sh.startBalancer()
+    
+# Loading our datasets
+1.  You can download the dataset on global terrorism attack here:  https://www.kaggle.com/START-UMD/gtd
 
-You can download the data set on global terrorism attack here:  https://www.kaggle.com/START-UMD/gtd
+2.  The file is in .csv format, you need to convert it to json using: http://www.csvjson.com/csv2json
+
+3.  Copy your .json dataset to the bin folder of the MongoDB, in our case we name our dataset json as gtd.json by default MongoDB bin folder can be located on C:\Program Files\MongoDB\Server\3.4\bin
+
+4.  Open cmd then go to the bin folder of the MongoDB. By default, MongoDB bin folder can be located on C:\Program Files\MongoDB\Server\3.4\bin then issue the import command below:
+    - mongoimport --port 27019 --db gtdb --collection gtdc --file gtd.json --type json --jsonArray
+
+5.  Wait until the import to finish
+
+# Running MapReduce
+1.  To run our MapReduce functions, go back to your mongos prompt and 
+
 Our MongoDB configured setup can be downloaded here: setup https://drive.google.com/open?id=1JOoO7vAZ724ukuhAtwTIwr_6kXGpOjl8
