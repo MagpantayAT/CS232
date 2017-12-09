@@ -32,19 +32,19 @@ Local Disk (C:)
 1. Open your cmd then go to the bin folder of the MongoDB. By default, MongoDB bin folder can be located at on C:\Program Files\MongoDB\Server\3.4\bin
 
 2. Once you are in the path of the bin folder, issue the command below:
-   C:\bin>  mongod --port 37011 --dbpath C:/mongodb/rs0/rs0-0 --replSet rs0 --shardsvr
+   -  mongod --port 37011 --dbpath C:/mongodb/rs0/rs0-0 --replSet rs0 --shardsvr
    
 3. Repeat step 1 then issue the the command below, do not close the current cmd run another cmd instance:
-   C:\bin>  mongod --port 37012 --dbpath F:/mongodb/rs0/rs0-1 --replSet rs0 --shardsvr
+   -  mongod --port 37012 --dbpath F:/mongodb/rs0/rs0-1 --replSet rs0 --shardsvr
    
 4. Repeat step 1 then issue the the command below, do not close the current cmd run another cmd instance:
-   C:\bin>  mongod --port 37013 --dbpath F:/mongodb/rs0/rs0-2 --replSet rs0 --shardsvr
+   -  mongod --port 37013 --dbpath F:/mongodb/rs0/rs0-2 --replSet rs0 --shardsvr
    
 5. In this step, you must have three MongoDB instance running in three different ports (37011, 37012 and 37103). Now we need to login to one of the MongoDB instance that we have created, to do this repeat step 1 then issue the command below. In our case we will login to the MongoDB instance at port 37011.
-   C:\bin>  mongo --port 37011
+   -  mongo --port 37011
 
 6. Once you are logged in in one of the MongoDB instance, isse the command below this will initiate the three MongoDB instance to be a Replica Sets with an id of rs0.
-  C:\bin> rs.initiate({
+   -  rs.initiate({
         _id: "rs0",
         members: [
             { _id : 0, host : "localhost:37011" },
@@ -57,19 +57,19 @@ Local Disk (C:)
 1. Open your cmd then go to the bin folder of the MongoDB. By default, MongoDB bin folder can be located at on C:\Program Files\MongoDB\Server\3.4\bin
 
 2. Once you are in the path of the bin folder, issue the command below:
-   C:\bin>  mongod --port 47011 --dbpath C:/mongodb/rs1/rs1-0 --replSet rs0 --shardsvr
+   -  mongod --port 47011 --dbpath C:/mongodb/rs1/rs1-0 --replSet rs0 --shardsvr
    
 3. Repeat step 1 then issue the the command below, do not close the current cmd run another cmd instance:
-   C:\bin>  mongod --port 47012 --dbpath F:/mongodb/rs1/rs1-1 --replSet rs0 --shardsvr
+   -  mongod --port 47012 --dbpath F:/mongodb/rs1/rs1-1 --replSet rs0 --shardsvr
    
 4. Repeat step 1 then issue the the command below, do not close the current cmd run another cmd instance:
-   C:\bin>  mongod --port 47013 --dbpath F:/mongodb/rs1/rs1-2 --replSet rs0 --shardsvr
+   -  mongod --port 47013 --dbpath F:/mongodb/rs1/rs1-2 --replSet rs0 --shardsvr
    
 5. In this step, you must have three MongoDB instance running in three different ports (47011, 47012 and 47103). Now we need to login to one of the MongoDB instance that we have created, to do this repeat step 1 then issue the command below. In our case we will login to the MongoDB instance at port 47011.
-   C:\bin>  mongo --port 47011
+   -  mongo --port 47011
 
 6. Once you are logged in in one of the MongoDB instance, isse the command below this will initiate the three MongoDB instance to be a Replica Sets with an id of rs0.
-  C:\bin> rs.initiate({
+   -  rs.initiate({
         _id: "rs1",
         members: [
             { _id : 0, host : "localhost:47011" },
