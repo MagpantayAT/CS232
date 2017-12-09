@@ -1,7 +1,7 @@
 # CS232
 Project for CS232 (Jay-Arr Buhain and Abraham Magpantay)
 
-# PREPARATION FOR MongoDB SETUP
+# Preparation for MongoDB setup
 1. Download MongoDB installer at MongoDB Download Center https://www.mongodb.com/download-center#community
 2. Install MongoDB in your machine
 3. When installation is finished, we can now start setting up our database environment
@@ -27,8 +27,7 @@ Local Disk (C:)
     - rs1-1
     - rs1-2
 
-
-# SETTING UP REPLICA SETS IN MONGODB (rs0)
+# Setting up Replica Set (rs0)
 1. Open your cmd then go to the bin folder of the MongoDB. By default, MongoDB bin folder can be located at on C:\Program Files\MongoDB\Server\3.4\bin
 
 2. Once you are in the path of the bin folder, issue the command below:
@@ -53,7 +52,7 @@ Local Disk (C:)
           ]
         })
 
-# SETTING UP REPLICA SETS IN MONGODB (rs1)
+# Setting up Replica Set (rs1)
 1. Open your cmd then go to the bin folder of the MongoDB. By default, MongoDB bin folder can be located at on C:\Program Files\MongoDB\Server\3.4\bin
 
 2. Once you are in the path of the bin folder, issue the command below:
@@ -78,7 +77,7 @@ Local Disk (C:)
           ]
         })
         
-# SETTING UP REPLICA SETS IN MONGODB (configReplSet)
+# Setting up Replica Set (configReplSet)
 1. Open your cmd then go to the bin folder of the MongoDB. By default, MongoDB bin folder can be located at on C:\Program Files\MongoDB\Server\3.4\bin
 
 2. Once you are in the path of the bin folder, issue the command below:
@@ -103,11 +102,37 @@ Local Disk (C:)
           ]
         })
 
-# SETTING UP Mongos (configReplSet)
+# Setting up Mongos and enabling Shard
 1.  By this time, we already have running nine MongoDB instances in our machine with this we must have at least nine cmd running. Open another cmd then go to the bin folder of the MongoDB. By default, MongoDB bin folder can be located at on C:\Program Files\MongoDB\Server\3.4\bin
 
-2.  To settup the routing service of MongoDB issue the command below. This :
+2.  To settup the routing service of MongoDB issue the command below. This will allow us to use our configReplSet Replica Set as our Config Server that will hold our two Replica Set Shards rs0 and rs1:
     - mongos --configdb configReplSet/localhost:27011,localhost:27012,localhost:27013 --port 27019
+
+3.  Onced issued, you will be in the mongos prompt. Here we will add the rs0 and rs1 as Shard server. Run the command below:
+    Adding rs0 and its MongoDB instances as Shards
+    - sh.addShard("rs0/localhost:37011")
+    - sh.addShard("rs0/localhost:37012")
+    - sh.addShard("rs0/localhost:37013")
+    Adding rs1 and its MongoDB instances as Shards
+    - sh.addShard("rs1/localhost:47011")
+    - sh.addShard("rs1/localhost:47012")
+    - sh.addShard("rs1/localhost:47013")
+    
+4.  Now we have two Shard server, rs0 and rs1. We will now create our database and enable sharding on it. To do this run the follwing commands:
+    Create a database named gtdb.
+    - use gtdb
+    
+    Create collection under gtdb.
+    - db.createCollection("gtdc")
+    
+    Enable Sharding on gtdb database.
+    - sh.enableSharding("gtdb")
+    
+    Since our collection is still empty, we need to create index for it that will be used as the basis for Sharding.
+    - db.gtbc.createIndex( { eventid : 1 } )
+    
+    We will enable Sharding on our collection tieh eventid as our Shard Key.
+    - sh.shardCollection("gtdb.gtdc", { "eventid" : 1 } )
 
 You can download the data set on global terrorism attack here:  https://www.kaggle.com/START-UMD/gtd
 
