@@ -121,10 +121,11 @@ Local Disk (C:)
     - sh.addShard("rs1/localhost:47013")
     
 4.  Now we have two Shard server, rs0 and rs1. We will now create our database and enable sharding on it. To do this run the follwing commands:
+
     Create a database named gtdb.
     - use gtdb
     
-    Create collection under gtdb.
+    Create collection under gtdb with name gtdc.
     - db.createCollection("gtdc")
     
     Enable Sharding on gtdb database.
@@ -136,6 +137,12 @@ Local Disk (C:)
     We will enable Sharding on our collection tieh eventid as our Shard Key.
     - sh.shardCollection("gtdb.gtdc", { "eventid" : 1 } )
 
-You can download the data set on global terrorism attack here:  https://www.kaggle.com/START-UMD/gtd
+5.  We now have enabled Sharding on our database and the collection. To ensure balancing to our Shards, you can issue the following commad:
+    To check balancer is running
+    - sh.isBalancerRunning()
+    Enable balancer state and start the balancer
+    - sh.setBalancerState(true)
+    - sh.startBalancer()
 
+You can download the data set on global terrorism attack here:  https://www.kaggle.com/START-UMD/gtd
 Our MongoDB configured setup can be downloaded here: setup https://drive.google.com/open?id=1JOoO7vAZ724ukuhAtwTIwr_6kXGpOjl8
