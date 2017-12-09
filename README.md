@@ -11,7 +11,6 @@ subfolders namely: configReplSet, rs0 and rs1. Under configReplSet we create ano
 name cfg0, cfg1 and cfg2. Go to rs0 then create another subfolder namely rs0-0, rs0-1 and rs0-2. Lastly,
 go to rs1 and create another subfolder namely rs1-0, rs1-1 and rs1-2. These folders will be used for our
 environment setup
-
 Local Disk (C:)
   - mongodb
     - configReplSet
