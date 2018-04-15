@@ -18,14 +18,14 @@ Local Disk (C:)
       - cfg0
       - cfg1
       - cfg2
-  - rs0
-    - rs0-0
-    - rs0-1
-    - rs0-2
-  - rs1
-    - rs1-0
-    - rs1-1
-    - rs1-2
+    - rs0
+      - rs0-0
+      - rs0-1
+      - rs0-2
+    - rs1
+      - rs1-0
+      - rs1-1
+      - rs1-2
 
 # B. Setting up Replica Set (rs0)
 1. Open your cmd then go to the bin folder of the MongoDB. By default, MongoDB bin folder can be located on C:\Program Files\MongoDB\Server\3.4\bin
@@ -34,10 +34,10 @@ Local Disk (C:)
    -  mongod --port 37011 --dbpath C:/mongodb/rs0/rs0-0 --replSet rs0 --shardsvr
    
 3. Repeat step 1 then issue the the command below, do not close the current cmd run another cmd instance:
-   -  mongod --port 37012 --dbpath F:/mongodb/rs0/rs0-1 --replSet rs0 --shardsvr
+   -  mongod --port 37012 --dbpath C:/mongodb/rs0/rs0-1 --replSet rs0 --shardsvr
    
 4. Repeat step 1 then issue the the command below, do not close the current cmd run another cmd instance:
-   -  mongod --port 37013 --dbpath F:/mongodb/rs0/rs0-2 --replSet rs0 --shardsvr
+   -  mongod --port 37013 --dbpath C:/mongodb/rs0/rs0-2 --replSet rs0 --shardsvr
    
 5. In this step, you must have three MongoDB instance running in three different ports (37011, 37012 and 37103). Now we need to login to one of the MongoDB instance that we have created, to do this repeat step 1 then issue the command below. In our case we will login to the MongoDB instance at port 37011.
    -  mongo --port 37011
@@ -59,10 +59,10 @@ Local Disk (C:)
    -  mongod --port 47011 --dbpath C:/mongodb/rs1/rs1-0 --replSet rs0 --shardsvr
    
 3. Repeat step 1 then issue the the command below, do not close the current cmd run another cmd instance:
-   -  mongod --port 47012 --dbpath F:/mongodb/rs1/rs1-1 --replSet rs0 --shardsvr
+   -  mongod --port 47012 --dbpath C:/mongodb/rs1/rs1-1 --replSet rs0 --shardsvr
    
 4. Repeat step 1 then issue the the command below, do not close the current cmd run another cmd instance:
-   -  mongod --port 47013 --dbpath F:/mongodb/rs1/rs1-2 --replSet rs0 --shardsvr
+   -  mongod --port 47013 --dbpath C:/mongodb/rs1/rs1-2 --replSet rs0 --shardsvr
    
 5. In this step, you must have three MongoDB instance running in three different ports (47011, 47012 and 47103). Now we need to login to one of the MongoDB instance that we have created, to do this repeat step 1 then issue the command below. In our case we will login to the MongoDB instance at port 47011.
    -  mongo --port 47011
@@ -81,13 +81,13 @@ Local Disk (C:)
 1. Open your cmd then go to the bin folder of the MongoDB. By default, MongoDB bin folder can be located at on C:\Program Files\MongoDB\Server\3.4\bin
 
 2. Once you are in the path of the bin folder, issue the command below:
-   -  mongod --configsvr --replSet configReplSet --port 27011 --dbpath F:/mongodb/configReplSet/cfg0
+   -  mongod --configsvr --replSet configReplSet --port 27011 --dbpath C:/mongodb/configReplSet/cfg0
    
 3. Repeat step 1 then issue the the command below, do not close the current cmd run another cmd instance:
-   -  mongod --configsvr --replSet configReplSet --port 27012 --dbpath F:/mongodb/configReplSet/cfg1
+   -  mongod --configsvr --replSet configReplSet --port 27012 --dbpath C:/mongodb/configReplSet/cfg1
    
 4. Repeat step 1 then issue the the command below, do not close the current cmd run another cmd instance:
-   -  mongod --configsvr --replSet configReplSet --port 27013 --dbpath F:/mongodb/configReplSet/cfg2
+   -  mongod --configsvr --replSet configReplSet --port 27013 --dbpath C:/mongodb/configReplSet/cfg2
    
 5. In this step, you must have three MongoDB instance running in three different ports (27011, 27012 and 27013). Now we need to login to one of the MongoDB instance that we have created, to do this repeat step 1 then issue the command below. In our case we will login to the MongoDB instance at port 27011.
    -  mongo --port 27011
@@ -171,4 +171,4 @@ Local Disk (C:)
 4.  You can download our MongoDB configured setup here: setup https://drive.google.com/open?id=1JOoO7vAZ724ukuhAtwTIwr_6kXGpOjl8
 
 # F. PHP codes
-1. Codes on PHP is available on gta-php.zip mongos should be running on port 27019 before using the system. Note that you must have Xampp installed in your machine and all the mongo driver needed for PHP to communicate to the MongoDB
+1. Codes on PHP is available on gta-php.zip mongos should be running on port 27019 before using the system. Note that you must have Xampp installed in your machine (use xampp-win32-5.6.32-0-VC11-installer.exe) and all the mongo driver needed for PHP to communicate to the MongoDB
